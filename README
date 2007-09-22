@@ -1,0 +1,36 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=2025
+
+(22/09/07 This should be soon added to the official ocaml ftplugin)
+
+Ocaml support for annot file is already implemented in the official Ocaml ftplugin and in ocaml.annot.pl (script_id=1197).
+
+But this script adds the following:
+
+   - no need for python support (neither perl or anything else : only vim code inside)
+     + plus: more portable
+     + minus: no more lazy parsing, it looks very fast however
+     
+   - ocamlbuild support, ie.
+     + the plugin finds the _build directory and looks for the 
+       corresponding file inside;
+     + if the user decides to change the name of the _build directory thanks
+       to the '-build-dir' option of ocamlbuild, the plugin will manage to find it out;
+     + if ocamlbuild is not used, the usual behaviour holds; ie. the .annot
+       file should be in the same directory as the source file;
+     + for vim plugin programmers:
+       the variable 'b:_build_dir' contains the inferred path to the build 
+       directory, even if this one is not named '_build'.
+
+ Bonus:
+   - latin1 accents are handled
+   - lists are handled, even on multiple lines, you don't need the visual mode
+     (the cursor must be on the first bracket)
+   - parenthesized expressions, arrays, and structures (ie. '(...)', '[|...|]',
+     and '{...}') are handled the same way
+
+Usage:
+   - press <LocalLeader>t to display the type of expression under cursor
+   - don't forget to compile with -dtypes option (or -cflags -dtypes if you're using ocamlbuild)
+
+
+
